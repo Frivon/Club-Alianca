@@ -44,12 +44,22 @@
 
     </form>
 
-    <p class="text-center text-sm text-gray-400 mt-6">
-      Não tem conta?
-      <a href="index.html" class="text-orange-500 hover:text-orange-400 font-semibold">
-        Cadastre-se
+    <!-- LINKS ABAIXO -->
+    <div class="mt-6 text-center space-y-3">
+
+      <!-- Criar conta -->
+      <a href="index.html"
+        class="block text-orange-500 hover:text-orange-400 font-medium">
+        Criar conta
       </a>
-    </p>
+
+      <!-- Esqueceu senha -->
+      <a href="#"
+        class="block text-gray-400 hover:text-gray-300 text-sm">
+        Esqueceu sua senha?
+      </a>
+
+    </div>
 
   </div>
 
@@ -58,7 +68,7 @@
 
   <script>
     const supabaseUrl = "https://flsufquyizgxmytjklnt.supabase.co";
-    const supabaseKey = "SUA_PUBLISHABLE_KEY_AQUI";
+    const supabaseKey = "SUA_PUBLISHABLE_KEY";
 
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -80,14 +90,12 @@
         return;
       }
 
-      // salvar usuário logado (simples)
       localStorage.setItem("cliente", JSON.stringify(data));
 
       alert("Login realizado com sucesso!");
 
       window.location.href = "painel.html";
     });
-
   </script>
 
 </body>
