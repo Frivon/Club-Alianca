@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel - Club Aliança</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #111827);
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white">
+
+  <header class="p-6 border-b border-orange-500/20 flex justify-between items-center">
+    <div>
+      <h1 class="text-orange-500 text-2xl font-bold">Club Aliança</h1>
+      <p class="text-gray-400 text-sm">Painel do Cliente</p>
+    </div>
+
+    <button onclick="logout()"
+      class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-xl">
+      Sair
+    </button>
+  </header>
+
+  <main class="p-6 max-w-5xl mx-auto">
+
+    <div class="bg-gray-900 border border-orange-500/20 rounded-2xl p-6 mb-6">
+      <h2 class="text-xl font-bold text-orange-500">
+        Bem-vindo, <span id="nomeUsuario">Cliente</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+
+      <div class="bg-gray-900 p-5 rounded-2xl border border-gray-700">
+        <h3 class="text-orange-500 font-bold">Descontos</h3>
+        <p class="text-gray-400 text-sm">Até 50% OFF</p>
+      </div>
+
+      <div class="bg-gray-900 p-5 rounded-2xl border border-gray-700">
+        <h3 class="text-orange-500 font-bold">Ofertas</h3>
+        <p class="text-gray-400 text-sm">Todos os dias</p>
+      </div>
+
+      <div class="bg-gray-900 p-5 rounded-2xl border border-gray-700">
+        <h3 class="text-orange-500 font-bold">VIP</h3>
+        <p class="text-gray-400 text-sm">Atendimento exclusivo</p>
+      </div>
+
+    </div>
+
+    <div class="mt-6 bg-gray-900 border border-orange-500/20 rounded-2xl p-6">
+      <p><strong>Nome:</strong> <span id="dNome"></span></p>
+      <p><strong>Email:</strong> <span id="dEmail"></span></p>
+      <p><strong>CPF:</strong> <span id="dCpf"></span></p>
+      <p><strong>Telefone:</strong> <span id="dTelefone"></span></p>
+    </div>
+
+  </main>
+
+  <script>
+    const cliente = JSON.parse(localStorage.getItem("cliente"));
+
+    if (!cliente) {
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("nomeUsuario").innerText = cliente.nome;
+    document.getElementById("dNome").innerText = cliente.nome;
+    document.getElementById("dEmail").innerText = cliente.email;
+    document.getElementById("dCpf").innerText = cliente.cpf;
+    document.getElementById("dTelefone").innerText = cliente.telefone;
+
+    function logout() {
+      localStorage.removeItem("cliente");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
