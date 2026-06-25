@@ -62,7 +62,13 @@
     const supabaseUrl = "https://flsufquyizgxmytjklnt.supabase.co";
     const supabaseKey = "sb_publishable_Y0eTT0Cts2oSptp1rG3bNg_OodUVTvS";
 
-    const client = supabase.createClient(supabaseUrl, supabaseKey);
+    const supabase = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey,
+  {
+    auth: { persistSession: false }
+  }
+);
 
     // CPF máscara
     document.getElementById('cpf').addEventListener('input', (e) => {
@@ -83,32 +89,31 @@
 
     // Submit correto
     document.getElementById('cadastroForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
+  e.preventDefault();
 
-      const nome = document.getElementById('nome').value;
-      const cpf = document.getElementById('cpf').value;
-      const telefone = document.getElementById('telefone').value;
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
+  const nome = document.getElementById('nome').value;
+  const cpf = document.getElementById('cpf').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
 
-      const { data, error } = await client
-        .from('clientes')
-        .insert([
-          { nome, cpf, telefone, email, senha }
-        ]);
+  const { data, error } = await supabase
+    .from('clientes')
+    .insert([
+      { nome, cpf, telefone, email, senha }
+    ]);
 
-      console.log("DATA:", data);
-      console.log("ERROR:", error);
+  console.log("DATA:", data);
+  console.log("ERROR:", error);
 
-      if (error) {
-        alert("Erro: " + error.message);
-        return;
-      }
+  if (error) {
+    alert("Erro: " + error.message);
+    return;
+  }
 
-      alert("Cadastro realizado com sucesso!");
-
-      document.getElementById('cadastroForm').reset();
-    });
+  alert("Cadastro realizado com sucesso!");
+  document.getElementById('cadastroForm').reset();
+});
 
   </script>
 
